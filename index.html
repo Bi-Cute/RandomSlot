@@ -15,12 +15,16 @@
     height: 100vh;
   }
   .cell {
-  border: 1px solid #ddd;
+  border: 1px solid #fff;
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: 700;
-  font-size: 1.5em
+  font-size: 1.5em;
+  border: 1px solid black;
+  }
+  .black {
+  background-color: #ddd;
   }
 </style>
 <body>
@@ -31,6 +35,8 @@
   let cellWrap = document.querySelector('.contents_wrap')
   let arr = []
   let randomArr = []
+  let className = 'white'
+  let classCount = 1
 
   for (i = 1; i <= 100; i++) {
     arr.push(i)
@@ -49,15 +55,26 @@
     let result = randomArr.some((num) => num == i)
     
     if(result){
-      newCell.innerHTML = null;
-      cellWrap.append(newCell)
-    } else {
-      newCell.innerHTML = i;
-      cellWrap.append(newCell)
-    }
-  }
+        newCell.innerHTML = null;
+      } else {
+        newCell.innerHTML = i;
+      }
     
+    
+    newCell.classList.add(className);
+    
+    if(classCount != 10){
+      if (className == 'white') {
+        className = 'black'
+      } else { className = 'white' }
+    } else {
+      classCount = 0
+    }
 
+    classCount++
+
+    cellWrap.append(newCell)
+  }
   </script>
   </body>
 </html>
